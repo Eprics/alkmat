@@ -1,0 +1,52 @@
+x1 = [-1; 1; 2; 3]
+y1 = [-2; 0; -2; 2]
+newtonintp(x1,y1) % A Newton-polinom együtthatói:  -2     1    -1     1
+
+syms x; 
+%                                         (x-x1)*(x-x2)*(x-x3)
+n(x) = -2 + 1*(x--1) + -1*(x--1)*(x-1) + 1*(x--1)*(x-1)*(x-2);
+
+fplot(l);
+ax = gca();
+ax.XAxisLocation = "origin";
+ax.YAxisLocation = "origin";
+ax.XLim = [-4,3];
+ax.YLim = [-3,3];
+ax.NextPlot = "add";
+plot(x1, y1, "*")
+
+%%zh feladat
+%% 3. Feladat. Számítsa ki azt a Lagrange interpolációs polinomot, melyet az első feladat
+% f(x) függvénye az 1, e − 1, 2, 4 pontokban interpolál!
+% 1 feladat:  f(x) = ln3 (x + 1)
+syms x;
+f(x) = log(x+1)^3
+x1 = [1;exp(1)-1;2;4];
+y1 = f(x1);
+lagrange(x1, y1)
+%?????
+% szám + szám*x + szám*x^2 + szám*x^3;
+l(x) = (1658096410768116*log(2)^3)/259921095734039 - (4503599627370496*log(6121026514868073/2251799813685248)^3)/259921095734039 + (3170670128874071*log(3)^3)/259921095734039 - (65245816537652*log(5)^3)/259921095734039 + ((7881299347898368*log(6121026514868073/2251799813685248)^3)/259921095734039 - (6625637390660297*log(2)^3)/779763287202117 - (23234375285054653*log(3)^3)/1039684382936156 + (1630083243024731*log(5)^3)/3119053148808468)*x + ((1861984335908047*log(2)^3)/519842191468078 - (3940649673949184*log(6121026514868073/2251799813685248)^3)/259921095734039 + (24793901859458887*log(3)^3)/2079368765872312 - (716641811497603*log(5)^3)/2079368765872312)*x^2 + ((562949953421312*log(6121026514868073/2251799813685248)^3)/259921095734039 - (723730116608009*log(2)^3)/1559526574404234 - (3690512320342149*log(3)^3)/2079368765872312 + (455658545346995*log(5)^3)/6238106297616936)*x^3 
+
+fplot(l);
+ax = gca();
+ax.XAxisLocation = "origin";
+ax.YAxisLocation = "origin";
+ax.XLim = [-4,3];
+ax.YLim = [-3,3];
+ax.NextPlot = "add";
+plot(x1, y1, "*")
+
+%% trapéz
+% L
+trapez(l, -2, 5)
+simpson(l, -2, 5)
+
+simpson(@fg, 3, 10)
+
+% mintazh B csoport
+%trapez(@, [3, 10])
+%trapez.m megváltoztat :
+% function trapez(f, v)
+%a=v(1)
+%b=v(2)
